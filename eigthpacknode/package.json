@@ -1,0 +1,33 @@
+{
+  "name": "eigthpacknode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^4.10.2",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.3",
+    "express-validator": "^5.3.1",
+    "formidable": "^1.2.2",
+    "its": "^1.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.9.16",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.0.0"
+  }
+}

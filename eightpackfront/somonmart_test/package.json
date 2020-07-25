@@ -1,0 +1,49 @@
+{
+  "name": "SomonMart",
+  "version": "1.0.0",
+  "description": "Somonmart",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "ALISH",
+  "license": "MIT",
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@mui-treasury/components": "^1.5.2",
+    "@zeit-ui/react": "^1.8.0-canary.7",
+    "axios": "^0.19.2",
+    "isomorphic-fetch": "^2.2.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "js-cookie": "^2.2.1",
+    "moment": "^2.27.0",
+    "next": "^9.4.2",
+    "next-redux-wrapper": "^6.0.2",
+    "prop-types": "^15.7.2",
+    "query-string": "^6.13.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-swipeable-views": "^0.13.9",
+    "react-swipeable-views-utils": "^0.13.9",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "rsuite": "^4.8.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-dropdown": "^2.4.1",
+    "semantic-ui-react": "^0.88.2",
+    "styled-components": "^5.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/node": "^7.10.4",
+    "@babel/preset-env": "^7.10.4"
+  }
+}
