@@ -61,10 +61,10 @@ const Layout = ({children}) =>{
         direction="row"
         alignItems="flex-start"
         >
-          <Grid item xs={3}>
+          <Grid item xs={4} md={4}>
           <NavBarLow/>
           </Grid>
-          <Grid item xs={12} sm={12} md={9} lg={9} >
+          <Grid item xs={12} sm={12} md={7} lg={8} >
           <div className="child">
 
       

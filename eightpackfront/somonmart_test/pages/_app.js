@@ -7,11 +7,9 @@ import Head from 'next/head';
 import { MuiThemeProvider } from '@material-ui/core/styles'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import React from 'react';
-import 'semantic-ui-css/semantic.min.css';
-import { ZeitProvider } from '@zeit-ui/react'
+import { ZeitProvider, CssBaseline } from '@zeit-ui/react'
 
 const myTheme = {
   "palette": {
@@ -36,24 +34,21 @@ function MyApp(props) {
   const store = useStore((state) => state);
   return (
     <Provider store={store}>
-        <ZeitProvider theme={myTheme}>
-
+        
           <React.Fragment>
       <Head>
         <title>SomonMart</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
+      <ZeitProvider theme={myTheme}>
       <ThemeProvider theme={theme}>
-      <CssBaseline />
       
-    <>
+        <CssBaseline />      
           <Component {...pageProps} />
-           
-             </>
-             
-      </ThemeProvider>
+          </ThemeProvider>
+      </ZeitProvider>
+     
     </React.Fragment>
-    </ZeitProvider>
     </Provider> 
     
     

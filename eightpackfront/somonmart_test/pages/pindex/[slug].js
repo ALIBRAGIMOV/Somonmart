@@ -1,3 +1,5 @@
+/*
+import React from "react";
 import Layout from '../../components/Layout';
 import Router, {useRouter} from 'next/router';
 import { Button } from '@zeit-ui/react';
@@ -15,8 +17,6 @@ const API = 'http://localhost:8000/api';
 export default function Product ({post, relatedProduct}) {
   const router = useRouter()
   const { slug } = router.query
-
-
   const twoPhoto = <img
   src={`${API}/product/photoTwo/${post._id}`}
   alt={post.name}
@@ -114,23 +114,21 @@ return (
             </div>
           </div>
           </Layout>
-          <style jsx>{`
           
-         div .card .prodPhoto{
-            
-          } 
-          
-           `
-          }
-        </style>
         </React.Fragment>
-          
-        
-
         )
 }
 
 
+export async function getStaticPaths() {
+  const allProducts = await fetch(`http://localhost:8000/api/products`);
+  const data = await allProducts.json()
+    // Only `/posts/1` and `/posts/2` are generated at build time
+    return {
+      paths: data.map((product) => `/pindex/${product._id}`) ?? [],
+      fallback: true,
+    }
+}
 
 export async function getStaticProps({ params }) {
   // params contains the post `id`.
@@ -145,12 +143,29 @@ export async function getStaticProps({ params }) {
   return { props: { post, relatedProduct } }
 }
 
-export async function getStaticPaths() {
-  const allProducts = await fetch(`http://localhost:8000/api/products`);
-  const data = await allProducts.json()
-    // Only `/posts/1` and `/posts/2` are generated at build time
-    return {
-      paths: data.map((product) => `/pindex/${product._id}`) ?? [],
-      fallback: true,
-    }
-}
+*/
+
+import React from "react";
+import Link from "next/link"
+import {Button, Text} from "@zeit-ui/react"
+import Layout from "../../components/Layout";
+
+const Users = () => {
+
+
+
+  return (
+    <Layout>
+      <Link href="/pindex">
+        <Button>Назад</Button>
+      </Link>
+      
+    <Text type="success" size="1.25rem">
+    Информация о товаре скоро появится
+  </Text>
+  </Layout>
+    
+  );
+};
+
+export default Users;

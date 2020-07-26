@@ -255,7 +255,7 @@ export const BlogCardDemo = React.memo(function BlogCard() {
         }
             .bussines{
                         position: relative;
-                        width: 23%;
+                        width: 22%;
                         margin: 15px 1%;
                         display: flex;
                         margin-left: 10px;
