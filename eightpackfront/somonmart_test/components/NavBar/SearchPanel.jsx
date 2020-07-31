@@ -22,6 +22,20 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: '20px'
 
       },
+      container: {
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            paddingLeft: '15px',
+            paddingRight: '15px',
+            [theme.breakpoints.up('md')]: {
+                width: '1270px',
+                paddingLeft: 0
+              },
+              [theme.breakpoints.up('lg')]: {
+                width: '1400px'
+              },
+      }
+      ,
     img:{
         width: '260px',
         marginLeft: '10px',
@@ -56,7 +70,8 @@ const useStyles = makeStyles((theme) => ({
 
     },
     search:{
-        marginTop: '10px'
+        marginTop: '10px',
+        
     },
     badge:{
         verticalAlign: 'bottom'
@@ -81,6 +96,7 @@ const NavBarLow = () => {
         {matches === false && (  
             
         <div className={classes.root}>
+        <div className={classes.container}>
         <Grid
             container
             direction="row"
@@ -115,7 +131,7 @@ const NavBarLow = () => {
                   
                     <i className="signIco"><img className="img" src="https://image.flaticon.com/icons/svg/747/747376.svg"  />
                     </i>
-                    <span>
+                    <span style={{cursor: 'pointer'}}>
                     Вход
                   </span>
                   </a>
@@ -166,7 +182,7 @@ const NavBarLow = () => {
             </Grid>
 
             
-            
+            </div>
         </div>
           )}
           
@@ -200,7 +216,7 @@ const NavBarLow = () => {
             font-weight: 400;
             font-size: 16px;
             cursor: pointer;
-            
+            text-decoration: none;
             
         }
         .uLtag{
@@ -218,7 +234,7 @@ const NavBarLow = () => {
 
         
         .img {
-          width: 24px;
+          width: 18px;
           cursor: pointer;
           margin-right: 2px;
         }
@@ -259,7 +275,7 @@ const NavBarLow = () => {
             cursor: pointer;
         }
         .csr168{
-            width: 270px;
+            width: 290px;
             cursor: pointer;
             padding: 3px 0;
             position: relative;
@@ -558,9 +574,8 @@ nav li ul li ul{
 	
 /* Change this in order to change the Dropdown symbol */
 li > a:only-child:after { content: ''; }
-        
-        
-        
+
+     
       `}</style>
           </React.Fragment>
     )

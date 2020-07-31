@@ -10,6 +10,7 @@ import TextInfoContent from '@mui-treasury/components/content/textInfo';
 import { useWideCardMediaStyles } from '@mui-treasury/styles/cardMedia/wide';
 import { useN01TextInfoContentStyles } from '@mui-treasury/styles/textInfoContent/n01';
 import { useBouncyShadowStyles } from '@mui-treasury/styles/shadow/bouncy';
+import { Grid } from '@material-ui/core';
 
 
 
@@ -17,6 +18,7 @@ import { useBouncyShadowStyles } from '@mui-treasury/styles/shadow/bouncy';
 const useStyles = makeStyles(() => ({
   root: {
     maxWidth: 304,
+    maxHeight: 500,
     margin: 'auto',
     boxShadow: 'none',
     borderRadius: 0,
@@ -41,27 +43,78 @@ export const News = React.memo(function NewsCard() {
   const textCardContentStyles = useN01TextInfoContentStyles();
   const shadowStyles = useBouncyShadowStyles();
   return (
-    <Card className={cx(styles.root, shadowStyles.root)}>
+    <Grid container>
+      <Grid item xs>
+      <Card className={cx(styles.root, shadowStyles.root)}>
       <CardMedia
         classes={mediaStyles}
         image={
-          'https://images.unsplash.com/photo-1468774871041-fc64dd5522f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2689&q=80'
+          'https://s0.rbk.ru/v6_top_pics/resized/1180xH/media/img/3/35/755935208667353.jpg'
+        }
+      />
+      <CardContent className={styles.content}>
+        <TextInfoContent
+          classes={textCardContentStyles}
+          overline={'20 Июля, 2020'}
+          heading={'Что с ресторанным бизнесом?'}
+          body={
+            'Рестораны не смогли покрыть убытки от карантина за счет доставки. Некоторые из них поставляли готовые блюда в сети.'
+          }
+        />
+        <Button color={'primary'} fullWidth className={styles.cta}>
+          Узнать больше <ChevronRightRounded />
+        </Button>
+      </CardContent>
+    </Card>
+      </Grid>
+      <Grid item xs>
+      <Card className={cx(styles.root, shadowStyles.root)}>
+      <CardMedia
+        classes={mediaStyles}
+        image={
+          'https://s0.rbk.ru/v6_top_pics/resized/1180xH/media/img/2/26/755958578078262.jpg'
         }
       />
       <CardContent className={styles.content}>
         <TextInfoContent
           classes={textCardContentStyles}
           overline={'March 20, 2019'}
-          heading={'What happened in Thailand?'}
+          heading={'Робот-бариста и робот-мерчандайзер?'}
           body={
-            'Kayaks crowd Three Sisters Springs, where people and manatees maintain controversial coexistence.'
+            'Пандемия коронавируса стала неожиданным, но мощным драйвером для развития ряда технологий в сфере ретейла и общественного питания'
           }
         />
         <Button color={'primary'} fullWidth className={styles.cta}>
-          Find Out More <ChevronRightRounded />
+        Узнать больше <ChevronRightRounded />
         </Button>
       </CardContent>
     </Card>
+      </Grid>
+      <Grid item xs>
+      <Card className={cx(styles.root, shadowStyles.root)}>
+      <CardMedia
+        classes={mediaStyles}
+        image={
+          'https://s0.rbk.ru/v6_top_pics/resized/1180xH/media/img/1/42/755928343368421.jpg'
+        }
+      />
+      <CardContent className={styles.content}>
+        <TextInfoContent
+          classes={textCardContentStyles}
+          overline={'March 20, 2019'}
+          heading={'Как быть успешным в сегменте «кофе с собой»'}
+          body={
+            'Российский рынок кофе растет бешеными темпами. За последние шесть лет рынок кофе только в сегменте HoReCa вырос в 2,5 раза.'
+          }
+        />
+        <Button color={'primary'} fullWidth className={styles.cta}>
+        Узнать больше  <ChevronRightRounded />
+        </Button>
+      </CardContent>
+    </Card>
+      </Grid>
+    </Grid>
+
   );
 });
 

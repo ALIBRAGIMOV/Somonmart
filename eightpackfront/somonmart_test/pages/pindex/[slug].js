@@ -1,42 +1,58 @@
-/*
 import React from "react";
 import Layout from '../../components/Layout';
 import Router, {useRouter} from 'next/router';
-import { Button } from '@zeit-ui/react';
+import { useEffect, useState, useContext, createContext } from 'react'
 import Link from 'next/link';
 import Cardz from '../../components/Card/Cardz';
 import CardBuy from '../../components/Card/CardBuy';
-import { Breadcrumbs, Textarea, Card, Description, Text} from '@zeit-ui/react'
 import NextLink from 'next/link'
 import Grid from '@material-ui/core/Grid';
 import ShowImage from '../../components/Card/ShowImage'
 const API = 'http://localhost:8000/api';
+import {Card, Typography, Button, Input} from "@material-ui/core"
+import Footer from "../../components/Landing/Footer";
+import fetch from 'isomorphic-fetch';
+import {ready, listRelated} from '../../components/apiCore';
 
 
-
-export default function Product ({post, relatedProduct}) {
+export default function Product ({product, query}) {
   const router = useRouter()
-  const { slug } = router.query
   const twoPhoto = <img
-  src={`${API}/product/photoTwo/${post._id}`}
-  alt={post.name}
+  src={`${API}/product/photoTwo/${product._id}`}
+  alt={product.name}
   className="mb-3"
   style={{ maxHeight: "250px", maxWidth: "250px" }}
 />;
   const threePhoto = <img
-  src={`${API}/product/photoThree/${post._id}`}
-  alt={post.name}
+  src={`${API}/product/photoThree/${product._id}`}
+  alt={product.name}
   className="mb-3"
   style={{ maxHeight: "250px", maxWidth: "250px" }}
 />
   const und = '';
 
 
+  const { slug } = router.query
+
+  const [related, setRelated] = useState([]);
+
+  const loadRelated = () => {
+    listRelated(slug).then(data => {
+        if (data.error) {
+            console.log(data.error);
+        } else {
+            setRelated(data);
+        }
+    });
+};
+useEffect(() => {
+  loadRelated();
+}, []);
 
   const showRelatedProduct = () => {
-    return relatedProduct.map((product, i) => (
-      <Grid item xs={4}>
-             <div key={i}>
+    return related.map((product, i) => (
+      <Grid item >
+             <div className='card' key={i}>
                
                 <Cardz product={product} />
                 <br/>
@@ -47,22 +63,12 @@ export default function Product ({post, relatedProduct}) {
   };
 
 
+
 return (
         <React.Fragment>
           <Layout>
 
           <div>
-            <div>
-              <Breadcrumbs>
-                  <NextLink href="/">
-                    <Breadcrumbs.Item nextLink>Главная страница</Breadcrumbs.Item>
-                  </NextLink>
-                  <NextLink href="/pindex">
-                    <Breadcrumbs.Item nextLink>Товары</Breadcrumbs.Item>
-                  </NextLink>
-              <Breadcrumbs.Item>{post.name}</Breadcrumbs.Item>
-            </Breadcrumbs>
-            </div>
             <div>
               <Link href="/pindex">
                 <Button shadow type="abort" style={{marginTop: '20px', marginBottom: '20px'}}>
@@ -71,27 +77,27 @@ return (
             </Link>
             </div>
             <div>
-            <Text h1>{post.name}</Text>
+            <Typography h1>{product.name}</Typography>
             </div>
             <div>
             <Grid container>
               <Grid item xs={8}>
-                <Card style={{marginBottom: '20px'}}>
-                  <ShowImage item={post} url="product" />
+                <Card variant="outlined" style={{marginBottom: '20px'}}>
+                  <ShowImage item={product} url="product" />
                  </Card>
               </Grid>
               <Grid item xs={4}>
-                  <CardBuy product={post}/>
+                  <CardBuy product={product}/>
               </Grid>
               <Grid container>
               <Grid item xs={3}>
-                <Card style={{marginBottom: '20px'}}>
-                   {post.photoTwo === undefined ? und : twoPhoto}
+                <Card variant="outlined" style={{marginBottom: '20px'}}>
+                   {product.photoTwo === undefined ? und : twoPhoto}
                 </Card>
               </Grid>
               <Grid item xs={3}>
-                <Card style={{marginBottom: '20px'}}>
-                    {post.photoThree === undefined ? und : threePhoto}
+                <Card variant="outlined" style={{marginBottom: '20px'}}>
+                    {product.photoThree === undefined ? und : threePhoto}
                 </Card>
                    
               </Grid>
@@ -103,23 +109,47 @@ return (
        
             </div>
             <div>
-            <Description title="Описание" content={<Textarea width="80%" disabled placeholder={`${post.description}`} />} />
+              <h3>
+                Описание товара
+              </h3>
+            <Typography>{product.description}</Typography>
                 
             </div>
             <div>
                   <h2>Похожие товары</h2>
-                  <Grid container>
+                  <Grid container justify="center" spacing={5}>
                       {showRelatedProduct()}
                   </Grid>
             </div>
           </div>
           </Layout>
-          
+          <style jsx>
+            {`
+            .card{
+              margin-right: 20px;
+            }
+            `}
+          </style>
+          <Footer/>
         </React.Fragment>
         )
 }
 
 
+Product.getInitialProps = ({ query }) => {
+
+  return ready(query.slug).then((data) => {
+    if (data.error) {
+      console.log(data.error);
+    } else {
+      return { product: data, query
+      };
+    }
+  });
+};
+
+
+/*
 export async function getStaticPaths() {
   const allProducts = await fetch(`http://localhost:8000/api/products`);
   const data = await allProducts.json()
@@ -145,9 +175,10 @@ export async function getStaticProps({ params }) {
 
 */
 
+/*
 import React from "react";
 import Link from "next/link"
-import {Button, Text} from "@zeit-ui/react"
+import {Button, Typography} from "@material-ui/core"
 import Layout from "../../components/Layout";
 
 const Users = () => {
@@ -160,12 +191,13 @@ const Users = () => {
         <Button>Назад</Button>
       </Link>
       
-    <Text type="success" size="1.25rem">
+    <Typography type="success" size="1.25rem">
     Информация о товаре скоро появится
-  </Text>
+  </Typography>
   </Layout>
     
   );
 };
 
 export default Users;
+*/

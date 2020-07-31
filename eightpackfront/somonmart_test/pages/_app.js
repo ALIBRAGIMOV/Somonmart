@@ -4,18 +4,11 @@ import { useStore } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { MuiThemeProvider } from '@material-ui/core/styles'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../src/theme';
 import React from 'react';
-import { ZeitProvider, CssBaseline } from '@zeit-ui/react'
-
-const myTheme = {
-  "palette": {
-    "warning": "#3AA78C"
-  }
-}
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 
@@ -35,20 +28,19 @@ function MyApp(props) {
   return (
     <Provider store={store}>
         
-          <React.Fragment>
+
+        <React.Fragment>
       <Head>
         <title>SomonMart</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
-      <ZeitProvider theme={myTheme}>
       <ThemeProvider theme={theme}>
-      
-        <CssBaseline />      
-          <Component {...pageProps} />
-          </ThemeProvider>
-      </ZeitProvider>
-     
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </React.Fragment>
+    
     </Provider> 
     
     

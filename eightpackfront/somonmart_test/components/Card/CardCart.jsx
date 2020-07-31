@@ -1,47 +1,70 @@
-import {Card, Row, Image, Text, Button, Table, Input} from '@zeit-ui/react'
-import {useToasts} from '@zeit-ui/react'
-import React from 'react';
 import Link from 'next/link'
 import ShowImage from './ShowImage'
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeFromCart, incrementProducts, decrementProducts, } from "../../store/cart/action";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
+const useStyles = makeStyles({
+  root: {
+    minWidth: 250,
+    maxWidth: 270,
+    cursor: 'pointer',
+    marginBottom: '20px',
+    marginLeft: '20px',
+    marginRight: '20px'
 
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+  button:{
+    justifyContent: 'center'
 
+  }
+});
 
-const CardCart = ({product}) => {
-    const dispatch = useDispatch();
-    const globalState = useSelector((state) => state.counter.counter);
-    const globalCart = useSelector((state) => state.cart.cart);
-    const [count, setCount] = React.useState(1);
-    const [input, setInput] = React.useState('');
-    const [toasts, setToast] = useToasts();
-    const click = () => setToast({ text: 'Товар добавлен в корзину!' });
+export default function OutlinedCard({product}) {
+  const classes = useStyles();
 
-    const globalCount = globalCart.map((item) => (
-        item._id === product._id && (
-            item.count
-    )
-    ))
-        
-    const globalSumm =  globalCart.map((item) => (item._id === product._id && (
-            item.price * item.count
-    )))
+  const dispatch = useDispatch();
+  const globalState = useSelector((state) => state.counter.counter);
+  const globalCart = useSelector((state) => state.cart.cart);
+  const [count, setCount] = React.useState(1);
+  const [input, setInput] = React.useState('');
+  const globalCount = globalCart.map((item) => (
+      item._id === product._id && (
+          item.count
+  )
+  ))
+      
+  const globalSumm =  globalCart.map((item) => (item._id === product._id && (
+          item.price * item.count
+  )))
 
-    let summaInput = product.price * (input > 1 ? input : 1);
-
-    return(
-        <div>
-    <Card width="220px"  style={{cursor: 'pointer'}}>
-
-                
-            <div>
-            <Text>
+  let summaInput = product.price * (input > 1 ? input : 1);
+  return (
+    <Card className={classes.root} style={{cursor: 'pointer'}} variant="outlined">
+      <CardContent>
+      
                 {globalCart.map((item) => (
                     <div>
                         {`${item._id}` === `${product._id}` && (
                   <div>
-                       <Button size="mini" auto="true" 
+                       <Button variant="outlined" color="secondary"
                       style={{ float: "right" }}
                       onClick={() =>
                         dispatch(removeFromCart(globalCart, item))
@@ -65,43 +88,28 @@ const CardCart = ({product}) => {
                   )}
 
                     </div>))}
-
-                    
-                    </Text>
                     <Link href='/pindex/[slug]' as={`/pindex/${product._id}`}>
                         <a>
                         <ShowImage  item={product} url="product" />
-                        <Text h3 style={{ marginBottom: '0' }}>
-                        {product.name}
-                    </Text>
+                        <Typography variant="h6" display="block" gutterBottom >                        {product.name}
+                    </Typography>
                         </a>
 
                     
                     </Link>
-                
-                    
-                </div>
-            
-            
-                 <Card.Footer>
-                    
-                 <Button disabled={`${globalCount.includes(1)}` === 'true' ? true : false} auto type="success" auto ghost shadow="true" size="small" onClick={() => dispatch(decrementProducts(globalCart, product))}>-</Button>
-                 <Text shadow="true" h5 style={{ marginBottom: '0' }}>
+      </CardContent>
+      <CardActions>
+      <Button disabled={`${globalCount.includes(1)}` === 'true' ? true : false} auto type="success" auto ghost shadow="true" size="small" onClick={() => dispatch(decrementProducts(globalCart, product))}>-</Button>
+                 <Typography shadow="true" h5 style={{ marginBottom: '0' }}>
 
                         <a>{globalCount} ШТ</a>
                         
-                    </Text>
+                    </Typography>
                             
             <Button auto onClick={() => dispatch(incrementProducts(globalCart, product))} type="success" shadow="true" auto="true" ghost size="small">+</Button>
-                    <Text type="primary" h4>{globalSumm}₽</Text>
-                
-                    </Card.Footer>
-
-        </Card>
-        </div>
-        
-        
-    )
+                    <Typography type="primary" h4>{globalSumm}₽</Typography>
+                    </CardActions>
+    </Card>
+  );
 }
 
-export default CardCart;

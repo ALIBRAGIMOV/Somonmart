@@ -19,6 +19,18 @@ const useStyles = makeStyles((theme) => ({
     },root: {
       flexGrow: 1,
     },
+    container: {
+      marginRight: 'auto',
+      marginLeft: 'auto',
+      paddingLeft: '15px',
+      paddingRight: '15px',
+      [theme.breakpoints.up('md')]: {
+          width: '1270px',
+          paddingLeft: 0
+        },
+        [theme.breakpoints.up('lg')]: {
+          width: '1400px'
+        },},
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
@@ -56,12 +68,12 @@ const Layout = ({children}) =>{
         <NavBar/>
         <SearchPanel />
         
-        
+        <div className={classes.container}>
         <Grid container
         direction="row"
         alignItems="flex-start"
         >
-          <Grid item xs={4} md={4}>
+          <Grid item xs={4} md={5} lg={4}>
           <NavBarLow/>
           </Grid>
           <Grid item xs={12} sm={12} md={7} lg={8} >
@@ -72,7 +84,8 @@ const Layout = ({children}) =>{
         </div>
           </Grid>
         </Grid>
-                
+        </div>
+        
         </div>
         
         <style jsx>{`

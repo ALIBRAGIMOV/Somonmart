@@ -19,7 +19,7 @@ const data = [
     link: 'ssg',
     image:
       // eslint-disable-next-line max-len
-      'https://www.picneco.ru/images/home_banner/3.jpg',
+      'https://i.ibb.co/rxV6D8Z/22.jpg'
   },
   {
     id: 2,
@@ -28,13 +28,13 @@ const data = [
     subtitle: '',
     image:
       // eslint-disable-next-line max-len
-      'https://www.picneco.ru/images/home_banner/1.jpg',
+      'https://i.ibb.co/rxV6D8Z/22.jpg',
   },
   {
     id: 3,
-    title: 'Air Max',
+    title: '',
     link: 'ssr',
-    subtitle: 'Deluxe',
+    subtitle: '',
     image:
       // eslint-disable-next-line max-len
       'https://i.ibb.co/rxV6D8Z/22.jpg',

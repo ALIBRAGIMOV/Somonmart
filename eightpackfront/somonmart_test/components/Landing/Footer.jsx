@@ -7,6 +7,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import Link from 'next/link'
+import { nominalTypeHack } from "prop-types";
+import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 const useStyles = makeStyles(theme => ({
 
@@ -15,10 +17,25 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text,
     borderRadius: 0,
     bottom: 0,
-    backgroundColor: '#faf5f2',
+    backgroundColor: '#efefef',
     boxShadow: 'inset 0 2px 10px rgba(0,0,0,.1)',
     marginTop: '20px'
   },
+  container: {
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    paddingLeft: '15px',
+    paddingRight: '15px',
+    [theme.breakpoints.up('md')]: {
+        width: '1270px',
+        paddingLeft: 0
+      },
+      [theme.breakpoints.up('lg')]: {
+        width: '1400px'
+      },
+}
+,
+
   listHeader: {
     fontSize: 17,
     fontWeight: "bold",
@@ -26,6 +43,7 @@ const useStyles = makeStyles(theme => ({
   },
   listItem: {
     fontSize: "12",
+    textDecoration: 'none',
     fontWeight: "400",
     fontFamily: 'Montserrat, sans-serif',
   },
@@ -36,6 +54,8 @@ const useStyles = makeStyles(theme => ({
   },
   footer: {
     fontSize: "14px",
+    textDecoration: 'none',
+
     fontWeight: "bold",
     fontFamily: 'Montserrat, sans-serif',
   },
@@ -45,6 +65,7 @@ const useStyles = makeStyles(theme => ({
   },
   by: {
     fontSize: "14px",
+    textDecoration: 'none',
     fontWeight: "bold",
     fontFamily: 'Montserrat, sans-serif',
     color: theme.palette.primaryColor
@@ -58,8 +79,9 @@ const Footer = props => {
   const classes = useStyles();
 
   return (
-    <div classes={classes.root}>
-      <Paper className={classes.paper}>
+    <React.Fragment>
+       <Paper className={classes.paper}>
+       <div className={classes.container}>
         <Grid className={classes.grid} container spacing={8}>
           <Grid item md={3}>
             <List className={classes.right} component="nav" aria-label="Main mailbox folders">
@@ -72,17 +94,27 @@ const Footer = props => {
               </ListItem>
               <ListItem button>
                 <Typography component="p" className={classes.listItem}>
-                  Доставка
+                  Миссия
                 </Typography>
               </ListItem>
               <ListItem button>
                 <Typography component="p" className={classes.listItem}>
-                  Оплата
+                  История
                 </Typography>
               </ListItem>
               <ListItem button>
                 <Typography component="p" className={classes.listItem}>
-                  Возврат
+                  Вакансии
+                </Typography>
+              </ListItem>
+              <ListItem button>
+                <Typography component="p" className={classes.listItem}>
+                  Наши клиенты
+                </Typography>
+              </ListItem>
+              <ListItem button>
+                <Typography component="p" className={classes.listItem}>
+                  Карта сайта
                 </Typography>
               </ListItem>
             </List>
@@ -92,7 +124,7 @@ const Footer = props => {
               <ListItem button>
                 <ListItemText>
                   <Typography variant="h5" className={classes.listHeader}>
-                    <Link href="/ssg"><a>О компании</a></Link>
+                    <Link href="/ssg"><a>Сервисы</a></Link>
                   </Typography>
                 </ListItemText>
               </ListItem>
@@ -114,30 +146,20 @@ const Footer = props => {
             </List>
           </Grid>
           <Grid item md={3}>
-            <List className={classes.right} component="nav" aria-label="Main mailbox folders">
-              <ListItem button>
-                <ListItemText>
-                  <Typography variant="h5" className={classes.listHeader}>
-                    <Link href="/ssg"><a>О компании</a></Link>
-                  </Typography>
-                </ListItemText>
-              </ListItem>
-              <ListItem button>
-                <Typography component="p" className={classes.listItem}>
-                  Доставка
-                </Typography>
-              </ListItem>
-              <ListItem button>
-                <Typography component="p" className={classes.listItem}>
-                  Оплата
-                </Typography>
-              </ListItem>
-              <ListItem button>
-                <Typography component="p" className={classes.listItem}>
-                  Возврат
-                </Typography>
-              </ListItem>
-            </List>
+                <YMaps >
+          <div >
+            <Map  defaultState={{ center: [55.798379, 37.593677], zoom: 14 }}>
+                      <Placemark
+                modules={['geoObject.addon.balloon']}
+                defaultGeometry={[55.798379, 37.593677]}
+                properties={{
+                  balloonContentBody:
+                    'Ok ok',
+                }}
+              />
+            </Map>
+          </div>
+        </YMaps>
           </Grid>
           <Grid item md={3}>
             <List component="nav" aria-label="Main mailbox folders">
@@ -150,7 +172,7 @@ const Footer = props => {
               </ListItem>
               <ListItem button>
                 <Typography component="p" className={classes.listItem}>
-                <a className='phone' href="tel:+79256042494">+7(925)-604-24-94 <br />Телефон для связи</a>
+                <a className='phone' href="tel:+79256042494">+7(925)-604-24-94</a>
                 </Typography>
               </ListItem>
               <ListItem button>
@@ -160,7 +182,7 @@ const Footer = props => {
               </ListItem>
               <ListItem button>
                 <Typography component="p" className={classes.listItem}>
-                eight-pack@mail.ru
+                somonmart@mail.ru
                 </Typography>
               </ListItem>
             </List>
@@ -229,11 +251,19 @@ const Footer = props => {
             </Grid>
           </Grid>
         </Grid>
+        </div>
       </Paper>
       <style jsx>
           {`
+          Link{
+            text-decoration: none;
+          }
           a{
               color: black;
+              text-decoration: none;
+          }
+          .phone{
+            font-size: 20px;
           }
           .svg{
             cursor: pointer;
@@ -258,8 +288,8 @@ const Footer = props => {
           `}
           
       </style>
-    </div>
   );
+    </React.Fragment>
+  )
 };
-
 export default Footer;

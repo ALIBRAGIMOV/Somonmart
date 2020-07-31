@@ -242,7 +242,9 @@ export const BlogCardDemo = React.memo(function BlogCard() {
                     
     <style jsx>
         {`    
-
+        *{
+            text-decoration: none;
+        }
         .home_landing * {
             box-sizing: border-box;
         }
@@ -261,12 +263,12 @@ export const BlogCardDemo = React.memo(function BlogCard() {
                         margin-left: 10px;
                         align-items: center;
                         height: 110px;
-                        padding: 20px 19px;
+                        padding: 8px 12px;
                         border-radius: 12px;
                         box-shadow: 0 10px 45px rgba(0,0,0,.08), 0 5px 10px rgba(0,0,0,.05);
                         background-color: #fff;
                         transition: box-shadow,.15s;
-                        font-size: 20px;
+                        font-size: 15px;
                         font-family: Montserrat, sans-serif; 
             }    
             .bussines:hover{

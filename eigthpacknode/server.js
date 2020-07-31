@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const ecommerceRoutes = require('./routes/ecommerce')
 const cors = require('cors');
 const expressValidator = require('express-validator');
 require('dotenv').config();
@@ -15,7 +14,9 @@ const userRoutes = require('./routes/user');
 const categoryRoutes = require('./routes/category');
 const subcategoryRoutes = require('./routes/subcategory');
 const productRoutes = require('./routes/product');
- 
+const ecommerceRoutes = require('./routes/ecommerce')
+const orderRoutes = require('./routes/order');
+
 
 // app
 const app = express;
@@ -47,8 +48,10 @@ app.use('/api', categoryRoutes);
 app.use('/api', subcategoryRoutes);
 app.use('/api', productRoutes);
 app.use('/api', ecommerceRoutes);
+app.use('/api', orderRoutes);
 
 const port = process.env.Port || 8000;
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server on port ${port}`);
 })
+

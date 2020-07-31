@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
         height: '85px'
       },
       elevation4:{
-        boxShadow: '0px 0px 20px -1px rgba(115,115,115,0.22)'
+        boxShadow: '0px 0px 20px -1px rgba(115,115,115,0.22)',
+         color: 'black'
       },
     img:{
         width: '260px',
@@ -161,9 +162,10 @@ const NavBar = () => {
                         Контакты</a>
             </Grid>
             <Grid item xs={1}>
-                
+            
             <div className="numberphone">
-                <a className='phone' href="tel:+79256042494">+7(925)-604-24-94 <br />Телефон для связи</a>
+            <span className="icoPhone"/>
+                <a className='phone' href="tel:+79256042494">+7(925)-604-24-94</a>
             </div>
             </Grid>
             <Grid item xs={1}>
@@ -350,15 +352,67 @@ const NavBar = () => {
             color:  #209F38 ;
             cursor: pointer;t
         }
+        .numberphone{
+            width: 110%;
+        }
         .phone{
-            font-family: Montserrat, sans-serif; 
-            font-weight: 00;
-            font-size: 11px;
+            display: flex;
+            font-family: Montserrat,sans-serif;
+            font-weight: 400;
+            font-size: 14px;
             cursor: pointer;
+            -webkit-text-decoration: none;
+            text-decoration: none;
+            justify-content: flex-end;
+
         }
         .phone:hover{
             color:  #209F38 ;
             cursor: pointer;t
+        }
+        .icoPhone {
+            display: block;
+            position: absolute;
+            top: 26px;
+            width: 27px;
+            height: 46px;
+            background: url(https://image.flaticon.com/icons/svg/174/174879.svg) no-repeat 0 0;
+        }
+        @media (max-width:1699.98px) {
+                .city{
+                font-size: 12px;
+            }
+            .day{
+                font-size: 12px;
+            }
+            .phone{
+                font-size: 13px;
+            }
+            .icoPhone {
+            display: block;
+            position: absolute;
+            top: 26px;
+            width: 20px;
+            height: 40px;
+            background: url(https://image.flaticon.com/icons/svg/174/174879.svg) no-repeat 0 0;
+        }
+        @media (max-width:1499.98px) {
+                .city{
+                font-size: 12px;
+            }
+            .day{
+                font-size: 12px;
+            }
+            .phone{
+                font-size: 11.5px;
+            }
+            .icoPhone {
+            display: block;
+            position: absolute;
+            top: 26px;
+            width: 20px;
+            height: 37px;
+            background: url(https://image.flaticon.com/icons/svg/174/174879.svg) no-repeat 0 0;
         }
         @media (max-width:1399.98px) {
                 .city{
@@ -370,6 +424,14 @@ const NavBar = () => {
             .phone{
                 font-size: 10px;
             }
+            .icoPhone {
+            display: block;
+            position: absolute;
+            top: 26px;
+            width: 17px;
+            height: 36px;
+            background: url(https://image.flaticon.com/icons/svg/174/174879.svg) no-repeat 0 0;
+        }
         }
         @media (max-width:1216.98px) {
                 .city{

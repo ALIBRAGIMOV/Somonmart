@@ -19,6 +19,18 @@ const useStyles = makeStyles((theme) => ({
     },root: {
       flexGrow: 1,
     },
+    container: {
+      marginRight: 'auto',
+      marginLeft: 'auto',
+      paddingLeft: '15px',
+      paddingRight: '15px',
+      [theme.breakpoints.up('md')]: {
+          width: '1270px',
+          paddingLeft: 0
+        },
+        [theme.breakpoints.up('lg')]: {
+          width: '1400px'
+        },},
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
@@ -71,41 +83,41 @@ function counter({products, subCategory, error }) {
 
       
       </Layout>
-      
-    <div className="recommend_product">
+
+      <div className="recommend_product">
         <div className="container">
+        <div className={classes.container}>
             <a className="product_title">Рекомендуемые товары</a>
             <div className="new-grid"> 
-            <Grid container justify="center" spacing={5}>
+            
+            <Grid container >
             {products.products.map((product, i) => (
-                <Grid key={product} item>
-                <Cardi key={i} product={product} />
+                <Grid key={product} item xs>
+                <Cardi style={{marginRight: '20px',}} key={i} product={product} />
                 </Grid>
                  
             ))}
             
             </Grid> 
             </div>
+            </div>
         </div>
     </div>
+    <div className={classes.container}>
     <div style={{textAlign: 'center'}}>
+      
       <a className='product_title'>Новости</a>
     </div>
+
     <Grid container>
       <Grid item xs>
-        <News />
-      </Grid>
-      <Grid item xs>
-        <News />
-      </Grid>
-      <Grid item xs>
-        <News />
+        <News/>
       </Grid>
     </Grid>
-    
+    </div>
+    <Footer />
 
-      <Footer />
-
+      
       <style jsx>
       {` 
 

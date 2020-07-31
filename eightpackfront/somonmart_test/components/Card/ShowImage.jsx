@@ -10,7 +10,7 @@ const ShowImage = ({ item, url }) => {
             src={`${API}/${url}/photo/${item._id}`}
             alt={item.name}
             className="mb-3"
-            style={{ maxHeight: "250px", maxWidth: "250px" }}
+            style={{ maxHeight: "240px", maxWidth: "240px" }}
         />
         <style jsx>
             {`

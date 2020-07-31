@@ -1,10 +1,8 @@
 import Layout from '../components/Layout'
 import NextLink from 'next/link'
-import fetch from 'isomorphic-unfetch'
 import axios from "axios";
 import Grid from '@material-ui/core/Grid';
 import Cardz from '../components/Card/Cardz'
-import { Breadcrumbs, Textarea, Card, Description, Text} from '@zeit-ui/react'
 import Footer from '../components/Landing/Footer';
 
 
@@ -15,16 +13,8 @@ export default function Index ({slug, products}) {
     <div>
       <Layout>
     
-    <h1>Cleaning products</h1>
+    <h1>Бытовая химия</h1>
     <div style={{marginBottom: '20px'}}>
-    <Breadcrumbs >
-                  <NextLink href="/">
-                    <Breadcrumbs.Item nextLink>Главная страница</Breadcrumbs.Item>
-                  </NextLink>
-                  <NextLink href="/pindex">
-                    <Breadcrumbs.Item >Товары</Breadcrumbs.Item>
-                  </NextLink>
-            </Breadcrumbs>
     </div>
     
           <div className="recommend_product">
