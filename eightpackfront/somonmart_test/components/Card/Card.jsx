@@ -14,7 +14,7 @@ import PeopleCardFooter from '@mui-treasury/components/cardFooter/people';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 255,
+    minWidth: 270,
     maxWidth: 270,
     marginLeft: 20,
     marginRight: 20,

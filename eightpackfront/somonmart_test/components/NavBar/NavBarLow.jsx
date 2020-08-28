@@ -1,623 +1,648 @@
-
-import React, {useState, useEffect} from 'react';
-import { makeStyles } from '@material-ui/core';
-import Link from 'next/link'
-import Grid from '@material-ui/core/Grid';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core";
+import Link from "next/link";
+import Grid from "@material-ui/core/Grid";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useSelector, useDispatch } from "react-redux";
 
-
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-        marginLeft: '10px',
-        marginRight: '25px'
-      },
-    img:{
-        width: '260px',
-        marginLeft: '10px',
-        [theme.breakpoints.down('lg')]:{
-            display: 'none'
-        },
-        [theme.breakpoints.up('lg')]:{
-            display: 'block'
-        }
+  root: {
+    flexGrow: 1,
+    marginLeft: "15px",
+    marginRight: "25px",
+  },
+  img: {
+    width: "260px",
+    marginLeft: "10px",
+    [theme.breakpoints.down("lg")]: {
+      display: "none",
     },
-    phone:{
-        textDecoration: 'none',
-        color: 'black',
-        fontFamily: 'Montserrat, sans-serif',
-        fontSize: '15px',
-        fontWeight: '300',
-        whiteSpace: 'nowrap'
+    [theme.breakpoints.up("lg")]: {
+      display: "block",
     },
-    menui:{
-        [theme.breakpoints.down('xs')]:{
-            display: 'none'
-        },
-        [theme.breakpoints.up('sm')]:{
-            display: 'flex'
-        }
+  },
+  phone: {
+    textDecoration: "none",
+    color: "black",
+    fontFamily: "Montserrat, sans-serif",
+    fontSize: "15px",
+    fontWeight: "300",
+    whiteSpace: "nowrap",
+  },
+  menui: {
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
     },
-    phones:{
-        marginTop: '20px',
-        marginLeft: '44px'
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
     },
-    main:{
-
-    },
-    search:{
-        marginTop: '10px'
-    },
-    badge:{
-        verticalAlign: 'bottom'
-    },
-    search:{
-        marginBottom: '10px'
-    },
+  },
+  phones: {
+    marginTop: "20px",
+    marginLeft: "44px",
+  },
+  main: {},
+  search: {
+    marginTop: "10px",
+  },
+  badge: {
+    verticalAlign: "bottom",
+  },
+  search: {
+    marginBottom: "10px",
+  },
 }));
 
-
 const NavBarLow = () => {
+  const globalCart = useSelector((state) => state.cart.cart);
+  const matches = useMediaQuery("(max-width:1023.98px)");
+  const classes = useStyles();
+  const matchesmob = useMediaQuery("(max-width:600px)");
+  const [isShown, setIsShown] = useState(false);
 
-    const globalCart = useSelector((state) => state.cart.cart)
-    const matches = useMediaQuery('(max-width:1023.98px)');
-    const classes = useStyles();
-    const matchesmob = useMediaQuery('(max-width:600px)');
-    const [isShown, setIsShown] = useState(false);
-
-    return (
-        <React.Fragment>
-        <div className={classes.main}>
-        {matches === false && (  
-            
-        <div className={classes.root}>
-        <Grid
-            container
-            direction="row"
-            justify="space-between"
-            alignItems="center"
+  return (
+    <React.Fragment>
+      <div className={classes.main}>
+        {matches === false && (
+          <div className={classes.root}>
+            <Grid
+              container
+              direction="row"
+              justify="space-between"
+              alignItems="center"
             >
-            <Grid item xs={3}>
+              <Grid item xs={3}>
                 <Link href="/">
-                    <div className="csr168" onMouseEnter={() => setIsShown(true)}
-                                            onMouseLeave={() => setIsShown(false)}
-                                            
-                                            >
+                  <div
+                    className="csr168"
+                    onMouseEnter={() => setIsShown(true)}
+                    onMouseLeave={() => setIsShown(false)}
+                  >
                     <nav>
+                      <ul className="uLtag">
+                        <div className="csr181">
+                          <li>
+                            <Link href="/ssg">
+                              <a className="textcatone">
+                                Био посуда и упаковка{" "}
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-29px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
 
-                       <ul className="uLtag">
-                
-                <div className="csr181"
-                
-                >
-                    <li>
-                    
-                    <Link href="/ssg">
-                    
-                      <a className="textcatone">Био посуда и упаковка <span className="rightIco" />
-                     
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-29px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}
-                        
-                        
-                        > 
-                        
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '452px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                    </div>
-                    
-                    </li>
-                </div>
-                <div className="csr181">
-                    <li>
-                    
-                    <Link href="/about">
-                    
-                      <a className="textcat">Бумажная одноразовая посуда<span className="rightIco" />
-                     
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-60px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}
-                        
-                        >
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '394px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                </div>
-                    </li>
-                </div>
-                
-                <div className="csr181">
-                    <li>
-                    
-                    <Link href="/about">
-                    
-                      <a className="textcat">Бумажная упаковка<span className="rightIco" />
-                     
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-60px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}
-                        
-                        >
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '344px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                </div>
-                    </li>
-                </div>
-                
-                <div className="csr181">
-                    <li>
-                    
-                    <Link href="/about">
-                    
-                      <a className="textcat">Бытовая химия<span className="rightIco" />
-                     
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-60px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}
-                        
-                        >
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '284px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                </div>
-                    </li>
-                </div>
-                <div className="csr181">
-                    <li>
-                    
-                    <Link href="/about">
-                    
-                      <a className="textcat">Канцелярские товары<span className="rightIco" />
-                     
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-60px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}
-                        
-                        >
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '228px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                </div>
-                    </li>
-                </div>
-                <div className="csr181">
-                    <li>
-                    
-                    <Link href="/about">
-                    
-                      <a className="textcat">Ланчбоксы и подложки<span className="rightIco" />
-                     
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-60px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}
-                        
-                        >
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '172px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                </div>
-                    </li>
-                </div>
-                <div className="csr181">
-                    <li>
-                    
-                    <Link href="/about">
-                    
-                      <a className="textcat">
-                          Одноразовые контейнеры и упаковка<span className="rightIco" /> 
-                     
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-60px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}
-                        
-                        >
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '118px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                </div>
-                    </li>
-                </div>
-                <div className="csr181">
-                    <li>
-                    
-                    <Link href="/about">
-                    
-                      <a className="textcat">Пакеты из полиэтилена<span className="rightIco" />
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-60px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}>
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '118px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                </div>
-                    </li>
-                </div>
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "452px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
+                        <div className="csr181">
+                          <li>
+                            <Link href="/about">
+                              <a className="textcat">
+                                Бумажная одноразовая посуда
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-60px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
 
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "394px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
 
-                <div className="csr181">
-                    <li>
-                    
-                    <Link href="/about">
-                    
-                      <a className="textcat">Пластиковая одноразовая посуда<span className="rightIco" />
-                     
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-60px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}
-                        
-                        >
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '118px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                </div>
-                    </li>
-                </div>
-                <div className="csr181">
-                    <li>
-                    
-                    <Link href="/about">
-                    
-                      <a className="textcat">Пленки пищевые и хозяйственные<span className="rightIco" />
-                     
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-60px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}
-                        
-                        >
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '118px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                </div>
-                    </li>
-                </div>
-            <div className="csr181">
-                    <li>
-                    
-                    <Link href="/about">
-                    
-                      <a className="textcat">Расходные товары для магазинов<span className="rightIco" />
-                     
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-60px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}
-                        
-                        >
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '118px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                </div>
-                    </li>
-                </div>
-                
-                <div className="csr181">
-                    <li>
-                    
-                    <Link href="/about">
-                    
-                      <a className="textcat">Санитарно-гигиенические товары<span className="rightIco" />
-                     
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-60px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}
-                        
-                        >
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '118px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                </div>
-                    </li>
-                </div>
+                        <div className="csr181">
+                          <li>
+                            <Link href="/about">
+                              <a className="textcat">
+                                Бумажная упаковка
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-60px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
 
-                <div className="csr181">
-                    <li>
-                    
-                    <Link href="/about">
-                    
-                      <a className="textcat">Средства индивидуальной защиты<span className="rightIco" />
-                     
-                     </a>
-                    </Link>
-                    <div 
-                    className="subUl"
-                    
-                    style={{
-                        position: 'relative',
-                        height: '564px',
-                        top: '-60px',
-                        z_index: 1000,
-                        width: '270px',
-                        opacity: 1,
-                        left: '265px'
-                        }}
-                        
-                        >
-                    <ul className="uLtag2">
-                        <Link href="/ssr">
-                         <li className="uLtag3"><a>Пластиковые контейнеры</a></li>
-                        </Link>
-                    
-                    <li><a href="#">Бумажные стаканы</a></li>
-                    <li style={{    height: '118px',
-                                    background: '#f4f4f4',
-                                    }}>
-                        <a href="#">Пластиковые стаканы</a>
-                    </li>
-                </ul>
-                </div>
-                    </li>
-                </div>
-                
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "344px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
 
-                
+                        <div className="csr181">
+                          <li>
+                            <Link href="/about">
+                              <a className="textcat">
+                                Бытовая химия
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-60px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
 
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "284px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
+                        <div className="csr181">
+                          <li>
+                            <Link href="/about">
+                              <a className="textcat">
+                                Канцелярские товары
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-60px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
 
-                          </ul>
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "228px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
+                        <div className="csr181">
+                          <li>
+                            <Link href="/about">
+                              <a className="textcat">
+                                Ланчбоксы и подложки
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-60px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
+
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "172px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
+                        <div className="csr181">
+                          <li>
+                            <Link href="/about">
+                              <a className="textcat">
+                                Одноразовые контейнеры и упаковка
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-60px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
+
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "118px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
+                        <div className="csr181">
+                          <li>
+                            <Link href="/about">
+                              <a className="textcat">
+                                Пакеты из полиэтилена
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-60px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
+
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "118px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
+
+                        <div className="csr181">
+                          <li>
+                            <Link href="/about">
+                              <a className="textcat">
+                                Пластиковая одноразовая посуда
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-60px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
+
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "118px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
+                        <div className="csr181">
+                          <li>
+                            <Link href="/about">
+                              <a className="textcat">
+                                Пленки пищевые и хозяйственные
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-60px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
+
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "118px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
+                        <div className="csr181">
+                          <li>
+                            <Link href="/about">
+                              <a className="textcat">
+                                Расходные товары для магазинов
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-60px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
+
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "118px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
+
+                        <div className="csr181">
+                          <li>
+                            <Link href="/about">
+                              <a className="textcat">
+                                Санитарно-гигиенические товары
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-60px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
+
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "118px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
+
+                        <div className="csr181">
+                          <li>
+                            <Link href="/about">
+                              <a className="textcat">
+                                Средства индивидуальной защиты
+                                <span className="rightIco" />
+                              </a>
+                            </Link>
+                            <div
+                              className="subUl"
+                              style={{
+                                position: "relative",
+                                height: "564px",
+                                top: "-60px",
+                                z_index: 1000,
+                                width: "270px",
+                                opacity: 1,
+                                left: "265px",
+                              }}
+                            >
+                              <ul className="uLtag2">
+                                <Link href="/ssr">
+                                  <li className="uLtag3">
+                                    <a>Пластиковые контейнеры</a>
+                                  </li>
+                                </Link>
+
+                                <li>
+                                  <a href="#">Бумажные стаканы</a>
+                                </li>
+                                <li
+                                  style={{
+                                    height: "118px",
+                                    background: "#f4f4f4",
+                                  }}
+                                >
+                                  <a href="#">Пластиковые стаканы</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </li>
+                        </div>
+                      </ul>
                     </nav>
-                    
-                    
-                    
-                    <div className="csr171"></div>
-                    
-                    </div>
-                
-                </Link>
-            </Grid>
-            
-            </Grid>
 
-            
-            
-        </div>
-          )}
-          
-          
+                    <div className="csr171"></div>
+                  </div>
+                </Link>
+              </Grid>
+            </Grid>
           </div>
-          <style jsx>{`
+        )}
+      </div>
+      <style jsx>{`
 
        
               
@@ -1020,8 +1045,8 @@ li > a:only-child:after { content: ''; }
         
         
       `}</style>
-          </React.Fragment>
-    )
-}
+    </React.Fragment>
+  );
+};
 
 export default NavBarLow;

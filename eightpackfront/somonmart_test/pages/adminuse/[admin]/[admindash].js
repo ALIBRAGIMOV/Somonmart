@@ -9,20 +9,19 @@ import AddProduct from '../../../components/admin/AddProduct'
 
 const admindashboard = () => {
     return (
-        <div>
-            <Head>
-                  <title>AdminDashboard</title>
-            </Head>
-      <Layout>
-            <Admin>
-                <AdminDashboard />
-                <AddSubCategory />
-                <AddCategory />
-                <AddProduct />
-            </Admin>
+      <div>
+        <Head>
+          <title>AdminDashboard`s</title>
+        </Head>
+        <Layout>
+          <Admin>
+            <AdminDashboard />
+            <AddCategory />
+            <AddSubCategory />
+            <AddProduct />
+          </Admin>
         </Layout>
       </div>
-        
     );
 };
 

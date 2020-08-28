@@ -1,194 +1,112 @@
-
-import React, {useState, useEffect} from 'react';
-import { makeStyles } from '@material-ui/core';
-import Link from 'next/link'
-import SearchBar from '../Header/SearchBar'
-import Grid from '@material-ui/core/Grid';
-import PhonelinkRingIcon from '@material-ui/icons/PhonelinkRing';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import Badge from '@material-ui/core/Badge';
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core";
+import Link from "next/link";
+import SearchBar from "../Header/SearchBar";
+import Grid from "@material-ui/core/Grid";
+import PhonelinkRingIcon from "@material-ui/icons/PhonelinkRing";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import PersonPinIcon from "@material-ui/icons/PersonPin";
+import Badge from "@material-ui/core/Badge";
 import { useSelector, useDispatch } from "react-redux";
-import { signout, isAuth } from '../../actions/auth';
-
-
-
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-        marginLeft: '10px',
-        marginRight: '25px',
-        marginBottom: '20px'
-
-      },
-      container: {
-            marginRight: 'auto',
-            marginLeft: 'auto',
-            paddingLeft: '15px',
-            paddingRight: '15px',
-            [theme.breakpoints.up('md')]: {
-                width: '1270px',
-                paddingLeft: 0
-              },
-              [theme.breakpoints.up('lg')]: {
-                width: '1400px'
-              },
-      }
-      ,
-    img:{
-        width: '260px',
-        marginLeft: '10px',
-        [theme.breakpoints.down('lg')]:{
-            display: 'none'
-        },
-        [theme.breakpoints.up('lg')]:{
-            display: 'block'
-        }
+  root: {
+    flexGrow: 1,
+    marginBottom: "20px",
+  },
+  container: {
+    marginRight: "auto",
+    marginLeft: "auto",
+    [theme.breakpoints.up("md")]: {
+      width: "970px",
+      paddingLeft: 0,
     },
-    phone:{
-        textDecoration: 'none',
-        color: 'black',
-        fontFamily: 'Montserrat, sans-serif',
-        fontSize: '15px',
-        fontWeight: '300',
-        whiteSpace: 'nowrap'
+    [theme.breakpoints.up("lg")]: {
+      width: "1260px",
     },
-    menui:{
-        [theme.breakpoints.down('xs')]:{
-            display: 'none'
-        },
-        [theme.breakpoints.up('sm')]:{
-            display: 'flex'
-        }
+  },
+  img: {
+    width: "260px",
+    marginLeft: "10px",
+    [theme.breakpoints.down("lg")]: {
+      display: "none",
     },
-    phones:{
-        marginTop: '20px',
-        marginLeft: '44px'
+    [theme.breakpoints.up("lg")]: {
+      display: "block",
     },
-    main:{
-
+  },
+  phone: {
+    textDecoration: "none",
+    color: "black",
+    fontFamily: "Montserrat, sans-serif",
+    fontSize: "15px",
+    fontWeight: "300",
+    whiteSpace: "nowrap",
+  },
+  menui: {
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
     },
-    search:{
-        marginTop: '10px',
-        
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
     },
-    badge:{
-        verticalAlign: 'bottom'
-    },
-    search:{
-        marginBottom: '10px'
-    },
+  },
+  phones: {
+    marginTop: "20px",
+    marginLeft: "44px",
+  },
+  main: {},
+  search: {
+    marginTop: "10px",
+  },
+  badge: {
+    verticalAlign: "bottom",
+  },
+  search: {
+    marginBottom: "10px",
+  },
 }));
 
-
 const NavBarLow = () => {
+  const globalCart = useSelector((state) => state.cart.cart);
+  const matches = useMediaQuery("(max-width:1080px)");
+  const classes = useStyles();
+  const matchesmob = useMediaQuery("(max-width:600px)");
+  const [isShown, setIsShown] = useState(false);
 
-    const globalCart = useSelector((state) => state.cart.cart)
-    const matches = useMediaQuery('(max-width:1080px)');
-    const classes = useStyles();
-    const matchesmob = useMediaQuery('(max-width:600px)');
-    const [isShown, setIsShown] = useState(false);
-
-    return (
-        <React.Fragment>
-        <div className={classes.main}>
-        {matches === false && (  
-            
-        <div className={classes.root}>
-        <div className={classes.container}>
-        <Grid
-            container
-            direction="row"
-            justify="space-between"
-            alignItems="center"
-            >
-            <Grid item xs={3}>
-                <Link href="/pindex">
-                <div className="csr168">
-                    
-                <a className="text">
-                <span className="catalog-icon"/>
-                Каталог товаров
-                       </a>
+  return (
+    <React.Fragment>
+      <div className={classes.main}>
+        {matches === false && (
+          <div className={classes.root}>
+            <div className={classes.container}>
+              <Grid
+                container
+                direction="row"
+                justify="space-between"
+                alignItems="center"
+              >
+                <Grid item xs={3}>
+                  <Link href="/pindex">
+                    <div className="csr168">
+                      <a className="text">
+                        <span className="catalog-icon" />
+                        Каталог товаров
+                      </a>
                     </div>
-                
-                </Link>
-            </Grid>
-            <Grid item xs={7}>
-                <div className={classes.search} > 
-                     <SearchBar />
-                </div>
-                 
-            </Grid>
-            <Grid item xs={1}>
-            {!isAuth() && (
-              <React.Fragment>
-                <div className="menu1">
-                <Link href="/signin">
-                  <span>
-                 <a  className="sign">
-                  
-                    <i className="signIco"><img className="img" src="https://image.flaticon.com/icons/svg/747/747376.svg"  />
-                    </i>
-                    <span style={{cursor: 'pointer'}}>
-                    Вход
-                  </span>
-                  </a>
-                  </span>
-              </Link>
-              
-            </div>
-              </React.Fragment>
-            )}
-            {isAuth() && isAuth().role === 1 && (
-              <div className="menu1">
-                <Link as={`/adminuse/admin/${isAuth().name}`} href="/adminuse/[admin]/[admindash]">
-                 <a  className="sign"><i className="signIco"><img className="img" src="https://image.flaticon.com/icons/svg/1828/1828765.svg"  /></i>Меню</a>
-              </Link>
-            </div>)
-              }
-              {isAuth() && isAuth().role === 0 && (
-              <div className="menu1">
-                <Link as={`/userus/user/${isAuth().name}`} href="/userus/[user]/[userdash]">
-                 <a  className="sign"><i className="signIco"><img className="img" src="https://image.flaticon.com/icons/svg/1828/1828765.svg"  /></i>Меню</a>
-              </Link>
-            </div>)
-              }
-                {isAuth() && (
-             <React.Fragment>
-                <div className="menu1">
-              <Link href="/signin">
-           <a  className="sign" onClick={() => signout(() => router.replace(`/signin`))}><i className="signIco"><img className="img" src="https://image.flaticon.com/icons/svg/633/633671.svg"  /></i>Выход</a>
-            </Link>
-          </div>
-             </React.Fragment>
-            ) }
-                    
+                  </Link>
                 </Grid>
-                
-                <Grid item xs={1}>
-                    <Link href="/cart">
-                    <a className='user'>
-                            <Badge badgeContent={globalCart.length} color="secondary" className={classes.badge}>
-                            <svg className="imgcart"  xmlns="http://www.w3.org/2000/svg" width="24" height="33" viewBox="0 0 24 24"><path d="M6.665 9.068l-3.665-1.66v14l3.665 2.592 14.335-2.155v-14.845l-14.335 2.068zm-1.665 1.441l1 .453v10.118l-1-.707v-9.864zm14 9.615l-11 1.653v-10.881l11-1.587v10.815zm-2-15.833l-.001 1.749c0 .246-.18.455-.423.492-.303.045-.576-.19-.576-.495v-1.746c.001-.691-.231-1.304-.653-1.726-.368-.37-.847-.565-1.384-.565-1.547 0-2.96 1.558-2.963 3.268v1.681c0 .247-.181.457-.425.494-.302.046-.575-.189-.575-.494l.001-1.683c.004-2.261 1.866-4.266 3.962-4.266 1.717 0 3.039 1.387 3.037 3.291zm-9.999 2.209v-2.235c.004-2.26 1.866-4.265 3.962-4.265.492 0 .944.125 1.35.332-.423.17-.822.4-1.188.683l-.162-.015c-1.547 0-2.961 1.558-2.963 3.268v2.232c0 .248-.182.458-.427.494-.3.045-.572-.187-.572-.494z"/></svg>
-                            </Badge>
-                         Корзина
-                    
-                    </a>
-                    </Link>
-                    
+                <Grid item xs>
+                  <div className={classes.search}>
+                    <SearchBar />
+                  </div>
                 </Grid>
-            </Grid>
-
-            
+              </Grid>
             </div>
-        </div>
-          )}
-          
-          
           </div>
-          <style jsx>{`
+        )}
+      </div>
+      <style jsx>{`
               
         .city{
             font-family: Montserrat, sans-serif; 
@@ -577,8 +495,8 @@ li > a:only-child:after { content: ''; }
 
      
       `}</style>
-          </React.Fragment>
-    )
-}
+    </React.Fragment>
+  );
+};
 
 export default NavBarLow;

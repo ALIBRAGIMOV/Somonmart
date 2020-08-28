@@ -46,7 +46,7 @@ const useStyles = makeStyles(({ palette, breakpoints, spacing }) => ({
     // a must if you want to set arrows, indicator as absolute
     position: 'relative',
     width: '85%',
-    marginLeft: '54px',
+    marginLeft: '94px',
     [breakpoints.down('md')]: {
         width: '81%',
         marginLeft: '57px',
